@@ -1,0 +1,77 @@
+.header {
+    background-color: black;
+    color: white;
+    top: 0;
+    z-index: 10;
+    position: sticky; /* Sticks to the top when scrolling */
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    padding: 10px 20px;
+    margin: 0 auto;
+  }
+  
+  .leftside,
+  .rightside {
+    display: flex;
+    gap: 20px; /* Uniform spacing between buttons */
+  }
+  
+  .header-button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 15px; /* Add padding for better clickability */
+    border-radius: 5px; /* Rounded corners for modern look */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .header-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px); /* Subtle hover lift effect */
+  }
+  
+  .image-placeholder {
+    height: 60px; /* Adjusted for better proportions */
+    width: auto;
+    cursor: pointer; /* Indicate interactivity for the logo */
+  }
+  
+  .button-logo {
+    background-color: black;
+    border: none;
+  }
+  
+  @media (max-width: 768px) {
+    /* Responsive styles for smaller screens */
+    .header-content {
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center;
+    }
+  
+    .leftside,
+    .rightside {
+      flex-direction: column; /* Stack menu buttons vertically */
+      gap: 10px; /* Reduce gap for compact display */
+    }
+  
+    .header-button {
+      width: 100%; /* Stretch buttons to full width */
+      text-align: center;
+    }
+  
+    .image-placeholder {
+      height: 50px; /* Adjust for smaller screens */
+    }
+  }
+  

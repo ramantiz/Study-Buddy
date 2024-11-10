@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Header Section -->
+  <header class="header">
+    <div class="header-content">
+      <div class="leftside">
+        <button class="header-button" onclick="navigateTo('#about')">About</button>
+        <button class="header-button" onclick="navigateTo('#tools')">Tools</button>
+        <button class="header-button" onclick="openInNewTab('https://t.me/+gqDMjxhijHA1MGUy')">Help</button>
+        <button class="header-button" onclick="openInNewTab('http://127.0.0.1:5500/flashcard.html')">Flashcards</button>
+      </div>
+      <button class="button-logo" onclick="openInNewTab('http://127.0.0.1:5500/Home.html')">
+        <span class="logo-text">RARA</span>
+      </button>
+      
+      
+      <div class="rightside">
+        <button class="header-button" onclick="navigateTo('#team')">Team</button>
+        <button class="header-button" onclick="openInNewTab('http://127.0.0.1:5500/whiteboard.html')">Whiteboard</button>
+        <button class="header-button" onclick="openInNewTab('http://127.0.0.1:5500/game.html')">Game</button>
+        <a href="tel:+77017600191" class="header-button">Contacts</a>
+      </div>
+    </div>
+
+    <div class="content" style="width: 90%; margin: auto; padding: 20px; box-sizing: border-box;">
+        {% block body %}{% endblock %}
+    </div>
+    <div class="footer">
+        This tool developed by RARA_prime
+    </div>
+
+
+    <script>
+        function navigateTo(path) {
+          // Handle smooth scrolling for in-page navigation
+          if (path.startsWith('#')) {
+            const target = document.querySelector(path);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            // Navigate to other URLs
+            window.location.href = path;
+          }
+        }
+    
+        function openInNewTab(url) {
+          // Open specified URL in a new browser tab
+          window.open(url, '_blank');
+        }
+      </script>
+</body>
+</html>

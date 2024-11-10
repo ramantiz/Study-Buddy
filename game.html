@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jump Game</title>
+  <style>
+
+    /* Style for the Reset Record button */
+#resetRecordButton {
+  background-color: #6A0DAD; /* Purple background */
+  color: #E6E6FA; /* Lavender (light purple) text for contrast */
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+}
+
+#resetRecordButton:hover {
+  background-color: #4B0082; /* Indigo background on hover */
+  color: #D8BFD8; /* Thistle (another shade of light purple) text on hover */
+}
+
+    /* Existing styles */
+    
+    /* Styles for volume controls */
+    #controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .volume-control {
+      margin: 0 10px;
+    }
+    
+    label {
+      margin-right: 5px;
+      color: #6A0DAD; /* Ensure labels are visible */
+    }
+    
+    /* Styling for the Play Again button */
+    #playAgainButton {
+      display: none; /* Hide the button initially */
+      position: absolute;
+      top: 50%; /* Position it over the canvas */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #7428a7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 1; /* Ensure it appears above the canvas */
+    }
+
+    #playAgainButton:hover {
+      background-color: #602188;
+    }
+
+    /* Additional styling for the body */
+    body {
+      margin: 0;
+      background-color: #f3f1ff; /* Nice gradient */
+      font-family: Arial, sans-serif;
+      position: relative; /* Establishes a positioning context */
+      min-height: 100vh; /* Ensures body takes full viewport height */
+    }
+
+    h1 {
+      text-align: center;
+      color: #6A0DAD;
+      margin-top: 20px;
+    }
+
+    #gameContainer {
+      position: relative;
+      width: 400px;
+      height: 600px; /* Added height to match canvas */
+      margin: 0 auto;
+    }
+
+    canvas {
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #333;
+      background-color: #fff;
+    }
+
+    /* Watermark Styling */
+    #watermark {
+      position: fixed; /* Fixed position relative to the viewport */
+      bottom: 10px;     /* 10px from the bottom */
+      right: 10px;      /* 10px from the right */
+      font-size: 14px;
+      color: #4a148c; /* White with 50% opacity */
+      pointer-events: none; /* Allows clicks to pass through to underlying elements */
+      font-family: Arial, sans-serif;
+    }
+    
+  </style>
+</head>
+<body>
+  <iframe src="header.html" style="width: 100%; height: 100px; border: none;"></iframe>
+
+  <h1>Jump Game</h1>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <button id="playAgainButton">Play Again</button>
+  </div>
+  
+  <!-- Volume Controls -->
+<div id="controls">
+  <div class="volume-control">
+    <label for="bgVolume">Background Music:</label>
+    <input type="range" id="bgVolume" min="0" max="1" step="0.01" value="0.3">
+  </div>
+  <div class="volume-control">
+    <label for="jumpVolume">Jump Sound:</label>
+    <input type="range" id="jumpVolume" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  <!-- Optional Reset Record Button -->
+  <div class="volume-control">
+    <button id="resetRecordButton">Reset Record</button>
+  </div>
+</div>
+
+  
+  <!-- Watermark Element -->
+  <div id="watermark">Game Developed by RARA Prime</div>
+  
+  <!-- Place the script at the end of the body -->
+  <script src="jumping.js"></script>
+</body>
+</html>

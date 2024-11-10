@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <h1>To-Do List</h1>
+    {% if tasks|length < 1 %}
+    <h4>There are no tasks. Create one below!</h4>
+    {% else %}
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Time Remaining</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.deadline.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    {% set time_remaining = task.deadline - datetime.utcnow() %}
+                    {% if time_remaining.total_seconds() > 0 %}
+                        {{ time_remaining.days * 24 + time_remaining.seconds // 3600 }} hours and {{ (time_remaining.seconds // 60) % 60 }} minutes
+                    {% else %}
+                        <span style="color: red;">Past Deadline</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <form action="/delete/{{task.id}}" method="post" style="display:inline;"><button type="submit">Delete</button></form>
+                    <br>
+                    <a href="/update/{{task.id}}"><button type="button">Update</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content" placeholder="Task content" required>
+        <input type="datetime-local" name="deadline" id="deadline" required>
+        <input type="submit" value="Add Task">
+    </form>
+</div>
+
+{% endblock %}

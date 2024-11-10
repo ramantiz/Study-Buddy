@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Header.css">
+  <title>Header with Navigation</title>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="leftside">
+        <button class="header-button" onclick="navigateTo('#about')">About</button>
+        <button class="header-button" onclick="navigateTo('#tools')">Tools</button>
+        <button class="header-button" onclick="openInNewTab('https://t.me/+gqDMjxhijHA1MGUy')">Help</button>
+        <button class="header-button" onclick="openInNewTab('flashcard.html')">Flashcards</button>
+      </div>
+      <button class="button-logo" onclick="openInNewTab('Home.html')">
+        <img class="image-placeholder" src="RARALOGO.png" alt="Logo">
+      </button>
+      <div class="rightside">
+        <button class="header-button" onclick="navigateTo('#team')">Team</button>
+        <button class="header-button" onclick="openInNewTab('whiteboard.html')">Whiteboard</button>
+        <button class="header-button" onclick="openInNewTab('game.html')">Game</button>
+        <a href="tel:+77017600191" class="header-button">Contacts</a>      </div>
+    </div>
+  </header>
+
+  <script>
+    function navigateTo(path) {
+      // Handle smooth scrolling for in-page navigation
+      if (path.startsWith('#')) {
+        const target = document.querySelector(path);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Navigate to other URLs
+        window.location.href = path;
+      }
+    }
+
+    function openInNewTab(url) {
+      // Open specified URL in a new browser tab
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

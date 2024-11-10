@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Home.css">
+  <title>Home</title>
+  <style>
+         /* Fixed Icon Styling */
+    .calculator-icon {
+      position: fixed;
+      bottom: 90px; /* Raised from the bottom */
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .calculator-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* Modal Overlay Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    /* Modal Content Styling */
+    .modal-content {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px; /* Normal size width */
+      height: 500px; /* Normal size height */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Close Button */
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-button:hover {
+      background-color: #ff2c2c;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 90%; /* Full width on small screens */
+        height: 90%; /* Adjusted height for smaller devices */
+      }
+    }
+
+    /* Added Styles for New Features */
+    header {
+      position: sticky;
+      top: 0;
+      background: black;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .footer {
+      background: #090909;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 3px;
+    }
+    .footer a {
+      color: #7a1e83;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #961f8a;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+    }
+    .back-to-top.show {
+      display: block;
+    }
+    .btn-hover:hover {
+      background-color: #555;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  
+    
+    <div id="welcome" class="welcome">
+      <div class="left-welcome">
+        <div>WELCOME TO YOUR</div>
+        <span>STUDY BUDDY</span>
+      </div>
+
+      <div class="right-welcome">
+        <h3>
+          Balancing assignments, exams, and life can be challenging.
+          That's why we’re here to help!
+        </h3>
+        <button class="more btn-hover">More</button>
+      </div>
+    </div>
+
+    <div class="moving-line">
+      <div class="moving-text">
+        <span>about the project</span>
+        <span>about the project</span>
+        <span>about the project</span>
+        <span>about the project</span>
+      </div>
+    </div>
+    <section id="about">
+    </section>
+    <div id="about" class="about">
+      <div class="left-about">
+        <img class="img-about" src="about.jpg" alt="About the Project">
+      </div>
+      <div class="right-about">
+        <h1 class="title">ABOUT THE PROJECT</h1>
+        <h3 class="mission">
+          Our mission is simple: to create a powerful, student-centered platform
+          that brings together the essential tools for academic success and well-being.
+          Education today is fast-paced, demanding, and sometimes overwhelming –
+          but with the right support, it doesn’t have to be. This project is built with one goal
+          in mind: to empower students by providing easy access to everything they need in one place.
+        </h3>
+        <button class="faq btn-hover" onclick="openTab('https://t.me/+gqDMjxhijHA1MGUy')">FAQ</button>
+
+      </div>
+    </div>
+    <div class="moving-line">
+      <div class="moving-text">
+        <span>about the project</span>
+        <span>about the project</span>
+        <span>about the project</span>
+        <span>about the project</span>
+      </div>
+    </div>
+
+    <div id="tools" class="our-tools">
+      <div class="left-side">
+        <h1 class="tools-text">OUR TOOLS</h1>
+        <div class="arrows">
+          <img src="arrow2.svg" alt="Arrow 1">
+          <img src="arrow3.svg" alt="Arrow 2">
+          <img src="arrow.svg" alt="Arrow 3">
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="comp">
+          <!-- Tool Card: Whiteboard Tool -->
+          <div class="tool-cards">
+            <img class="img-cards" src="flashcards.png" alt="Flashcards">
+            <h2>Whiteboard Tool</h2>
+            <h2>————————————————</h2>
+            <h3>Perfect for visualizing ideas, solving problems, and working together in real-time.
+ 
+               
+            </h3>
+            <button class="check" onclick="openTab('whiteboard.html')">CHECK</button>
+          </div>
+        
+          <!-- Tool Card: To-Do List -->
+          <div class="tool-cards">
+            <img class="img-cards" src="todolist2.png" alt="To-Do List">
+            <h2>To-Do List</h2>
+            <h2>————————————————</h2>
+            <h3>Organize your tasks effortlessly with our To-Do List! Keep track of assignments, set reminders, and stay on top of deadlines all in one place.</h3>
+            <button class="check" onclick="openTab('http://192.168.0.106:5111')">CHECK</button>
+          </div>
+        </div>
+        
+        <div class="comp">
+          <!-- Tool Card: Flashcards -->
+          <div class="tool-cards">
+            <img class="img-cards" src="flashcards2.jpg" alt="Flashcards">
+            <h2>Flashcards</h2>
+            <h2>————————————————</h2>
+            <h3>Let students create digital flashcards for quick revision on various topics.</h3>
+            <button class="check" onclick="openTab('flashcard.html')">CHECK</button>
+          </div>
+        
+          <!-- Tool Card: FAQ -->
+          <div class="tool-cards">
+            <img class="img-cards" src="library.png" alt="Library">
+            <h2>Frequently Asked Questions</h2>
+            <h2>————————————————</h2>
+            <h3>Feel free to ask questions!</h3>
+            <button class="check" onclick="openTab('https://t.me/+gqDMjxhijHA1MGUy')">CHECK</button>
+          </div>
+        </div>
+        
+        <div class="comp">
+          <!-- Tool Card: Calculator -->
+          <div class="tool-cards">
+            <img class="img-cards" src="CALCULATOR.png" alt="Calculator">
+            <h2>Calculator</h2>
+            <h2>————————————————</h2>
+            <h3>From simple arithmetic to everyday math, get instant answers to support your studies.</h3>
+            <button class="check" onclick="toggleCalculator()">CHECK</button>
+          </div>
+        
+          <!-- Tool Card: Mini-Game -->
+          <div class="tool-cards">
+            <img class="img-cards" src="minigamre.png" alt="Mini-Game">
+            <h2>Mini-Game</h2>
+            <h2>————————————————</h2>
+            <h3>Take a break and recharge with our Mini Games! Quick, fun games designed to help you relax and refresh your mind between study sessions.</h3>
+            <button class="check" onclick="openTab('game.html')">CHECK</button>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+      
+    
+
+    <div id="team" class="team">
+      <div class="team-comp">
+        <div class="member">
+          <img src="ramazan.png" alt="Ramazan Nabidolla">
+          <h2>Ramazan Nabidolla</h2>
+          <h3>—————————————</h3>
+          <h3>Team Lead</h3>
+          <h3>UI/UX Designer</h3>
+          <h3>Front-End Developer</h3>
+          <h3>@ramantiz</h3>
+        </div>
+        <div class="member">
+          <img src="adiltursnulli.png" alt="Adil Tursynali">
+          <h2>Adil Tursynali</h2>
+          <h3>—————————————</h3>
+          <h3>Game Developer</h3>
+          <h3>Front-End Developer</h3>
+          <h3>@Joke_m543</h3>
+        </div>
+      </div>
+    
+      <h1 class="team-text">MEET THE TEAM</h1>
+    
+      <div class="team-comp">
+        <div class="member">
+          <img src="aidos.png" alt="Aidos Taiyr">
+          <h2>Aidos Taiyr</h2>
+          <h3>—————————————</h3>
+          <h3>Back-End Developer</h3>
+          <h3>Data Engineer</h3>
+          <h3>@pilaviks</h3>
+        </div>
+        <div class="member">
+          <img src="adil_bakyt.png" alt="Adil Bakyt">
+          <h2>Adil Bakyt</h2>
+          <h3>—————————————</h3>
+          <h3>Back-End Developer</h3>
+          <h3>Front-End Developer</h3>
+          <h3>@ImperialDragonFlame</h3>
+        </div>
+      </div>
+    </div>
+    
+
+    <img src="calculator1.png" alt="Calculator Icon" class="calculator-icon" onclick="toggleCalculator()">
+
+    <!-- Pop-Up Modal for Calculator -->
+    <div id="calculator-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="close-button" onclick="toggleCalculator()">X</button>
+        <!-- Include Calculator Here -->
+        <iframe src="calculator.html" style="width: 100%; height: 100%; border: none;"></iframe>
+      </div>
+    </div>
+
+    <!-- Fixed Translate Button -->
+    <img src="translator.png" alt="Translate" class="translate-button" onclick="toggleTranslateWidget()">
+
+<!-- Pop-Up for Translate Widget -->
+<div id="translate-widget-modal" class="translate-modal">
+  <div class="translate-modal-content">
+    <button class="close-button" onclick="toggleTranslateWidget()">X</button>
+    <div id="google_translate_element"></div>
+  </div>
+</div>
+
+
+    
+  </main>
+  <footer class="footer">
+    <p>© 2024 Study Buddy Project</p>
+    <a href="#welcome">Back to Top</a>
+    <a href="https://github.com">GitHub</a>
+  </footer>
+  <button id="backToTop" class="back-to-top">Top</button>
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    function toggleCalculator() {
+      const modal = document.getElementById('calculator-modal');
+      modal.classList.toggle('show');
+    }
+      // Function to open a new tab
+      function openTab(url) {
+        window.open(url, '_blank'); // Opens the URL in a new tab
+      }
+    
+      // Function to toggle the calculator modal
+      function toggleCalculator() {
+        const modal = document.getElementById('calculator-modal');
+        modal.classList.toggle('show');
+      }
+
+      // Dynamically load the header.html file into the placeholder
+    fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading header:', error));
+
+  // Add smooth scrolling for in-page navigation
+  function navigateTo(path) {
+    if (path.startsWith('#')) {
+      const target = document.querySelector(path);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.location.href = path;
+    }
+  }
+
+  function openInNewTab(url) {
+    window.open(url, '_blank');
+  }
+
+  function toggleTranslateWidget() {
+    const modal = document.getElementById('translate-widget-modal');
+    modal.classList.toggle('show');
+  }
+
+  function toggleCalendarWidget() {
+    const modal = document.getElementById('calendar-widget-modal');
+    modal.classList.toggle('show');
+  }
+    
+  
+  </script>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es,fr,de,ru,zh-CN',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Calculator</title>
+    <style>
+        body {
+            background-color: rgb(9, 11, 11);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #000;
+            width: 450px;
+        }
+
+        /* History Display Styling */
+        .history {
+            max-height: 120px;
+            overflow-y: auto;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .history-entry {
+            margin-bottom: 5px;
+        }
+
+        /* Main Display Styling */
+        .counter {
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: right;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            min-width: 420px;
+            word-wrap: break-word;
+        }
+
+        /* Container for Buttons */
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Number Buttons Grid */
+        .number-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            flex: 3;
+        }
+
+        /* Operator Buttons Grid */
+        .operator-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 10px;
+            flex: 1;
+        }
+
+        /* Button Styles */
+        button {
+            width: 100%;
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Number Buttons Styling */
+        button.num {
+            background-color: rgb(83, 82, 81);
+        }
+
+        /* Function Buttons Styling */
+        button.mark, button.scientific, button.toggle-scientific {
+            background-color: #4a148c;
+            color: #fff;
+        }
+
+        button.mark_top {
+            background-color: rgb(190, 190, 190);
+            color: black;
+        }
+
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Scientific Buttons Styling */
+        .scientific-buttons {
+            display: none; /* Hidden by default */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .scientific-buttons button {
+            background-color: rgb(83, 82, 81);
+        }
+
+        .scientific-buttons button:hover {
+            opacity: 0.8;
+        }
+
+        /* Operator Buttons Styling */
+        .operator-buttons button {
+            background-color: #4a148c; /* Uniform color for operators */
+            color: #fff;
+        }
+
+        .operator-buttons button:hover {
+            background-color: #3f1176;
+        }
+
+       
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            .calculator {
+                width: 90%;
+            }
+
+            .counter {
+                min-width: 100%;
+            }
+        }
+        /* Adjusted Operator Button Styling */
+        .operator-buttons-button {
+            background-color: #4a148c; /* Uniform color for operators */
+            color: #fff;
+        }
+
+        .operator-buttons-button:hover {
+            background-color: #3f1176;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <!-- History Display -->
+        <div class="history" id="history">
+            <!-- Previous operations will appear here -->
+        </div>
+
+        <!-- Main Display -->
+        <p class="counter" id="display">0</p>
+
+        <!-- Scientific Buttons -->
+        <div class="scientific-buttons" id="scientific-buttons">
+            <button class="scientific" onclick="addFunction('sin')">sin</button>
+            <button class="scientific" onclick="addFunction('cos')">cos</button>
+            <button class="scientific" onclick="addFunction('tan')">tan</button>
+            <button class="scientific" onclick="addFunction('log')">log</button>
+            <button class="scientific" onclick="addFunction('ln')">ln</button>
+            <button class="scientific" onclick="addFunction('sqrt')">√</button>
+            <button class="scientific" onclick="addOperator('^')">^</button>
+            <button class="scientific" onclick="addConstant('π')">π</button>
+            <!-- Parentheses Buttons -->
+            <button class="scientific" onclick="addParenthesis('(')">(</button>
+            <button class="scientific" onclick="addParenthesis(')')">)</button>
+        </div>
+
+        <!-- Button Containers -->
+        <div class="buttons-container">
+            <!-- Number Buttons -->
+            <div class="number-buttons">
+                <button class="mark_top" onclick="allClear()">AC</button>
+                <button class="mark_top" onclick="deleteLast()">⌫</button>
+                <button class="mark_top" onclick="toggleSign()">+/-</button>
+                <button class="num" onclick="percentage()">%</button>
+
+                <button class="num" onclick="addNumber('7')">7</button>
+                <button class="num" onclick="addNumber('8')">8</button>
+                <button class="num" onclick="addNumber('9')">9</button>
+                <button class="operator-buttons-button" onclick="addOperator('/')">÷</button>
+
+                <button class="num" onclick="addNumber('4')">4</button>
+                <button class="num" onclick="addNumber('5')">5</button>
+                <button class="num" onclick="addNumber('6')">6</button>
+                <button class="operator-buttons-button" onclick="addOperator('*')">×</button>
+
+                <button class="num" onclick="addNumber('1')">1</button>
+                <button class="num" onclick="addNumber('2')">2</button>
+                <button class="num" onclick="addNumber('3')">3</button>
+                <button class="operator-buttons-button" onclick="addOperator('-')">-</button>
+
+                <button class="toggle-scientific" freez="toggleScientific()">...</button>
+                <button class="num zero" onclick="addNumber('0')">0</button>
+                <button class="num" onclick="addDecimal()">.</button>
+                <button class="operator-buttons-button" onclick="addOperator('+')">+</button>
+            </div>
+
+            <!-- Operator Buttons -->
+            <div class="operator-buttons">
+                <button class="mark_top" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ensure the script is loaded after the DOM elements -->
+    <script src="calculator.js"></script>
+</body>
+</html>

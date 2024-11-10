@@ -1,0 +1,674 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+
+/* Welcome Section */
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 100px; /* Add padding for spacing */
+  background-image: url("maindesign.png"); /* Use your image here */
+  background-size: cover; /* Ensure the image covers the whole section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 0px;
+  opacity: 0; /* Initially invisible */
+  animation: fadeIn 1.5s ease-in-out forwards; /* Animation */
+
+  /* Darker overlay for the background */
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("maindesign.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Animation for typing effect */
+.left-welcome {
+  font-size: 90px;
+  font-weight: 600;
+  line-height: 1.1;
+  animation: typewriter 3s steps(30) 1s forwards; /* Typing animation */
+}
+
+.left-welcome div {
+  margin-bottom: 10px; /* Add space between lines */
+}
+
+.left-welcome span {
+  font-size: 120px; /* Increase size of the span to make it more prominent */
+  font-weight: 700;
+  color: #961f9f; /* Add color to highlight the title */
+}
+
+/* Right Welcome Section */
+.right-welcome {
+  text-align: left; /* Align the text to the left for better flow */
+  max-width: 500px; /* Limit width for text */
+}
+
+.right-welcome h3 {
+  font-size: 28px; /* Slightly smaller for better readability */
+  line-height: 1.4; /* Improve line height for better text flow */
+  margin-bottom: 20px; /* Add some space below the text */
+  color: #ddd; /* Lighter text color for a softer look */
+}
+
+/* Button Style */
+.more {
+  width: 200px;
+  height: 50px;
+  background-color: #961f9f; /* Match the color with the span */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, scale 0.3s ease-in-out; /* Add scale transition */
+}
+
+/* Hover effect with scaling */
+.more:hover {
+  background-color: #7a0d7d;
+  transform: translateY(-3px) scale(1.05); /* Scale button on hover */
+}
+
+/* Description Section */
+.description {
+  display: flex;
+  flex-direction: column; /* Stack description elements */
+  gap: 10px;
+  font-size: 22px;
+  color: #ddd;
+  line-height: 1.5;
+  opacity: 0; /* Initially invisible */
+  animation: fadeInDescription 2s ease-in-out 0.5s forwards; /* Delayed fade-in */
+}
+
+@keyframes fadeInDescription {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Start slightly below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome {
+    flex-direction: column;
+    padding: 30px 50px;
+    opacity: 0;
+    animation: fadeInMobile 1.5s ease-in-out forwards;
+  }
+
+  /* Keyframe animation for the mobile welcome section */
+  @keyframes fadeInMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .left-welcome {
+    font-size: 60px; /* Adjust font size for smaller screens */
+    text-align: center;
+  }
+
+  .right-welcome {
+    text-align: center; /* Center-align text on smaller screens */
+  }
+
+  .more {
+    width: 100%; /* Make the button take full width on smaller screens */
+  }
+}
+
+.text-column {
+  margin-top: 100px;
+}
+
+.text-column h1 {
+  margin: 0;
+  line-height: 1;
+  font-weight: 200px;
+}
+
+.moving-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #810ab5; /* Purple color */
+  height: 50px;
+  width: 100%; /* Adjust width as needed */
+  position: relative;
+  white-space: nowrap; /* Ensures the text doesn't break into a new line */
+}
+
+.moving-text {
+  display: inline-block;
+  animation: move-horizontal 30s linear infinite; /* Adjust duration for speed */
+}
+
+.moving-text span {
+  display: inline-block;
+  color: white;
+  font-size: 16px; /* Adjust size as needed */
+  font-weight: bold;
+  margin-left: 100px; /* Creates 20px space between text items */
+}
+
+@keyframes move-horizontal {
+  0% {
+    transform: translateX(-100%); /* Start outside the container on the right */
+  }
+  100% {
+    transform: translateX(100%); /* End outside the container on the left */
+  }
+}
+
+/* About Section */
+.about {
+  display: flex;
+  flex-direction: row;
+  height: 700px;
+  width: 100%;
+  background-color: #201e1e;
+  opacity: 0; /* Initially invisible */
+  animation: fadeInAbout 1.5s ease-in-out forwards; /* Fade-in animation for the whole section */
+}
+
+@keyframes fadeInAbout {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Right About Section */
+.right-about {
+  color: white;
+  font-weight: normal; /* Normal font weight */
+  font-size: 18px; /* Adjust font size as needed */
+  line-height: 1.6; /* Adds more spacing between lines */
+  font-family: "Arial", sans-serif; /* Ensure a clean, readable font */
+  margin-top: 20px; /* Space from the top */
+  opacity: 0; /* Initially invisible */
+  animation: fadeInText 1.5s ease-in-out 0.5s forwards; /* Fade-in animation for text */
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px); /* Start slightly to the left */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End at normal position */
+  }
+}
+
+/* Title Animation */
+.title {
+  font-size: 80px;
+  opacity: 0; /* Initially invisible */
+  animation: fadeInTitle 1.5s ease-in-out 1s forwards; /* Fade-in animation for the title */
+}
+
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px); /* Start from above */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Mission Section */
+.mission {
+  width: 800px;
+  opacity: 0; /* Initially invisible */
+  animation: fadeInMission 1.5s ease-in-out 1.5s forwards; /* Fade-in animation for the mission */
+}
+
+@keyframes fadeInMission {
+  0% {
+    opacity: 0;
+    transform: translateX(20px); /* Start slightly to the right */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End at normal position */
+  }
+}
+
+/* About Image Animation */
+.img-about {
+  height: 500px;
+  width: 600px;
+  opacity: 0; /* Initially invisible */
+  animation: fadeInImage 2s ease-in-out 2s forwards; /* Fade-in animation for the image */
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    transform: scale(0.8); /* Start slightly smaller */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* End at normal size */
+  }
+}
+
+/* FAQ Button Styling */
+.faq {
+  width: 360px;
+  height: 60px;
+  background-color: #ac00f6;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none; /* Remove default border */
+  border-radius: 30px; /* Rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase; /* Make text uppercase for emphasis */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for hover and focus */
+  opacity: 0; /* Initially invisible */
+  animation: fadeInFAQ 1.5s ease-in-out 2.5s forwards; /* Fade-in animation */
+}
+
+/* Enhanced Button Hover Effect */
+.faq:hover {
+  background-color: #8a00d9; /* Darker shade of purple on hover */
+  transform: translateY(-5px); /* Slightly lift the button */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Add a subtle shadow */
+}
+
+/* Enhanced Button Focus Effect */
+.faq:focus {
+  outline: none; /* Remove outline */
+  box-shadow: 0 0 0 3px rgba(172, 0, 246, 0.5); /* Outline when focused */
+}
+
+/* Fade-in animation */
+@keyframes fadeInFAQ {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Tools Section */
+.our-tools {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  background: linear-gradient(135deg, #ffffff, #e1e1e1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Left-side and Right-side Layout */
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Arrows Styling */
+.arrows {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  gap: 20px; /* Adds space between arrows */
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer; /* Indicates clickable elements */
+}
+
+/* Tool Cards */
+.tool-cards {
+  width: 380px;
+  height: 450px;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 15px;
+  background-color: white; /* Background color for the card */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for tool cards */
+.tool-cards:hover {
+  transform: scale(1.05); /* Slightly enlarge the card on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+/* Image in tool cards */
+.img-cards {
+  width: 320px;
+  height: 140px;
+  border-radius: 8px; /* Rounded corners for the image */
+  object-fit: cover; /* Ensures image covers the area without distortion */
+  margin-bottom: 15px;
+}
+
+/* Check button */
+.check {
+  width: 150px;
+  height: 40px;
+  background-color: #961f9f;
+  color: white;
+  font-weight: 300;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer; /* Indicates it's clickable */
+}
+
+.check:hover {
+  background-color: #d933ff; /* Lighter purple on hover */
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+/* Additional Flex Layout for Right Side */
+.right-side {
+  align-items: flex-start; /* Aligns content to the left */
+  gap: 20px; /* Space between elements */
+  margin-left: 20px;
+}
+
+/* Arrow buttons to indicate direction */
+.arrows svg {
+  width: 40px;
+  height: 40px;
+  fill: #ac00f6;
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrows svg:hover {
+  transform: scale(1.2); /* Enlarge on hover */
+}
+
+/* Team Section */
+.team {
+  width: 100%;
+  height: 1400px;
+  background-color: #201e1e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInTeam 2s ease-in-out forwards; /* Fade-in animation for the whole team section */
+}
+
+/* Keyframes for Team Section Fade-in (more downward movement) */
+@keyframes fadeInTeam {
+  0% {
+    opacity: 0;
+    transform: translateY(150px); /* Start further below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Team Header Text */
+.team-text {
+  color: white;
+  font-size: 100px;
+  animation: fadeInText 1.5s ease-out 0.5s forwards; /* Fade-in with delay */
+}
+
+/* Keyframes for Header Text Fade-in (more downward movement) */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(80px); /* Start lower */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Component Wrapper (Comp and Team-Comp) */
+.comp,
+.team-comp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInComp 1.5s ease-in-out 1s forwards; /* Fade-in animation */
+}
+
+/* Keyframes for Components Fade-in (more downward movement) */
+@keyframes fadeInComp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px); /* Start lower */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+/* Team Member */
+.member {
+  width: 420px;
+  height: 520px;
+  color: white;
+  margin-left: 150px;
+  margin-top: 40px;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInMember 1.5s ease-in-out 1.5s forwards; /* Fade-in animation for members */
+}
+
+/* Keyframes for Team Member Fade-in (more downward movement) */
+@keyframes fadeInMember {
+  0% {
+    opacity: 0;
+    transform: translateY(80px) scale(0.8); /* Start lower and smaller */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* End at normal position and size */
+  }
+}
+
+.translate-button {
+  position: fixed;
+  bottom: 170px;
+  right: 26px;
+  width: 50px;
+  height: 50px;
+  color: rgb(111, 32, 145);
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.translate-button:hover {
+  transform: scale(1.1);
+}
+
+/* Modal Overlay */
+.translate-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.translate-modal.show {
+  display: flex;
+}
+
+/* Modal Content */
+.translate-modal-content {
+  background-color: #555555;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+}
+
+<style>
+  /* Fixed Calendar Button */
+  .calendar-button {
+    position: fixed;
+    bottom: 150px; /* Positioned above the translate button */
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .calendar-button:hover {
+    transform: scale(1.1);
+  }
+
+  /* Modal Overlay */
+  .calendar-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .calendar-modal.show {
+    display: flex;
+  }
+
+  /* Modal Content */
+  .calendar-modal-content {
+    background-color: #ffffff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  /* Close Button */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .close-button:hover {
+    background-color: #d32f2f;
+  }
+
+main {
+  display: flex;
+  flex-direction: column; /* Ensures elements stack vertically */
+  align-items: center; /* Centers elements horizontally */
+  gap: 10px; /* Adds space between the images */
+}

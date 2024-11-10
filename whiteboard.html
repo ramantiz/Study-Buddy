@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Whiteboard</title>
+    <link rel="stylesheet" href="whiteboard.css">
+    <style>
+        /* General styles */
+        .whiteboard-container {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 20px auto;
+            width: 90%;
+            background-color: #ffffff;
+            color: #4b0082;
+        }
+        .whiteboard-header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4b0082;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .whiteboard-toolbar button, .color-picker, .whiteboard-input {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            background-color: #e6e6fa;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #4b0082;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .whiteboard-toolbar button:hover {
+            background-color: #d8bfd8;
+        }
+        .color-picker {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .color-picker:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .canvas-container {
+            width: 800px;
+            height: 600px;
+            border: 2px solid #4b0082;
+            margin: 20px auto;
+            position: relative;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(75, 0, 130, 0.2);
+            border-radius: 15px;
+        }
+        .whiteboard-input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            width: 200px;
+            background-color: #f8f8ff;
+            color: #4b0082;
+        }
+        .whiteboard-input::placeholder {
+            color: #ba55d3;
+        }
+        @media screen and (max-width: 768px) {
+            .canvas-container {
+                width: 100%;
+                height: 400px;
+            }
+            .whiteboard-input {
+                width: 100%;
+            }
+            .whiteboard-toolbar button {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <iframe src="header.html" style="width: 100%; height: 100px; border: none;"></iframe>
+
+    <div class="whiteboard-container">
+        <h2 class="whiteboard-header">Interactive Whiteboard</h2>
+        <div class="whiteboard-toolbar">
+            <button onclick="undo()">Undo</button>
+            <button onclick="redo()">Redo</button>
+            <button onclick="clearCanvas()">Clear</button>
+            <button onclick="setTool('draw')">Free Draw</button>
+            <button onclick="setTool('highlight')">Highlight</button>
+            <button onclick="setTool('rect')">Draw Rectangle</button>
+            <button onclick="setTool('circle')">Draw Circle</button>
+            <button onclick="setTool('text')">Add Text</button>
+            <button onclick="setLineWidth(2)">Thin Line</button>
+            <button onclick="setLineWidth(5)">Thick Line</button>
+            <input type="color" id="colorPicker" class="color-picker" onchange="setColor(this.value)">
+            <input type="text" id="textInput" placeholder="Enter text" class="whiteboard-input">
+        </div>
+        <div class="canvas-container">
+            <canvas id="whiteboardCanvas" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('whiteboardCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let currentTool = 'draw';
+        let currentColor = 'black';
+        let currentLineWidth = 2;
+        let startX, startY;
+        let history = [];
+        let historyIndex = -1;
+
+        function saveState() {
+            history = history.slice(0, historyIndex + 1);
+            history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            historyIndex++;
+        }
+
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        }
+
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            saveState();
+        }
+
+        function setTool(tool) {
+            currentTool = tool;
+        }
+
+        function setLineWidth(width) {
+            currentLineWidth = width;
+        }
+
+        function setColor(color) {
+            currentColor = color;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineWidth = currentLineWidth;
+            ctx.strokeStyle = currentColor;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            if (currentTool === 'draw') {
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', (e) => {
+            if (isDrawing) {
+                if (currentTool === 'rect') {
+                    const width = e.offsetX - startX;
+                    const height = e.offsetY - startY;
+                    ctx.strokeRect(startX, startY, width, height);
+                } else if (currentTool === 'circle') {
+                    const radius = Math.sqrt(Math.pow(e.offsetX - startX, 2) + Math.pow(e.offsetY - startY, 2));
+                    ctx.beginPath();
+                    ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
+                    ctx.stroke();
+                } else if (currentTool === 'text') {
+                    const text = document.getElementById('textInput').value;
+                    if (text) {
+                        ctx.font = '20px Arial';
+                        ctx.fillStyle = currentColor;
+                        ctx.fillText(text, startX, startY);
+                        document.getElementById('textInput').value = ''; // Clear text input
+                    }
+                }
+                saveState();
+            }
+            isDrawing = false;
+        });
+    </script>
+</body>
+</html>
